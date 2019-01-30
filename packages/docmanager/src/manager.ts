@@ -31,6 +31,8 @@ import { SaveHandler } from './savehandler';
 
 import { DocumentWidgetManager } from './widgetmanager';
 
+import { DXFileLocker } from './file_locker';
+
 /* tslint:disable */
 /**
  * The document registry token.
@@ -56,6 +58,8 @@ export interface IDocumentManager extends DocumentManager {}
  * control of the proper closing and disposal of the widgets and contexts.
  */
 export class DocumentManager implements IDisposable {
+  unlockFileApi: DXFileLocker;
+
   /**
    * Construct a new document manager.
    */
@@ -73,6 +77,7 @@ export class DocumentManager implements IDisposable {
     );
     this._widgetManager = widgetManager;
     this._setBusy = options.setBusy;
+    this.unlockFileApi = new DXFileLocker();
   }
 
   /**
@@ -516,6 +521,14 @@ export class DocumentManager implements IDisposable {
     return registry.getWidgetFactory(widgetName);
   }
 
+  private _onWidgetDisposed(widget: IDocumentWidget): void {
+    // Note, the path is prefixed with a driver name and colon
+    // (e.g. "DNAnexus:DXNotebook.ipynb") which need to be
+    // stripped for the API call
+    let path = widget.context.path.replace('DNAnexus:', '/');
+    this.unlockFileApi.unlockFile(path);
+  }
+
   /**
    * Creates a new document, or loads one from disk, depending on the `which` argument.
    * If `which==='create'`, then it creates a new document. If `which==='open'`,
@@ -569,6 +582,14 @@ export class DocumentManager implements IDisposable {
 
     let widget = this._widgetManager.createWidget(widgetFactory, context!);
     this._opener.open(widget, options || {});
+
+    // Set a file-unlocking callback on DNAnexus notebook files
+    if (path.startsWith('DNAnexus') && path.endsWith('ipynb')) {
+      widget.disposed.connect(
+        this._onWidgetDisposed,
+        this
+      );
+    }
 
     // If the initial opening of the context fails, dispose of the widget.
     ready.catch(err => {
