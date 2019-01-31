@@ -19,33 +19,11 @@ body {
 }
 
 .jp-ApplicationShell {
-  /* position: absolute; */
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  display: flex;
-  flex-direction: column;
-  height: 100% !important;
-  width: 100%;
-}
-
-#jp-top-panel,
-#jp-header-panel,
-#jp-main-content-panel {
-  position: relative;
-  top: 0;
-  width: 100%;
-}
-
-#jp-main-split-panel {
-  height: 100% !important;
-  width: 100%;
-}
-
-#jp-left-stack,
-#jp-main-dock-panel {
-  height: 100% !important;
 }
 
 .jp-ApplicationShell.jp-mod-devMode {
@@ -63,17 +41,6 @@ body {
   min-height: var(--jp-private-menubar-height);
 }
 
-#jp-header-panel {
-  display: flex;
-  width: 100%;
-  background: white;
-  min-height: 58px;
-}
-
-#jp-header-panel > .p-Widget {
-  width: 100%;
-}
-
 #jp-bottom-panel {
   background: var(--jp-layout-color1);
   display: flex;
@@ -89,163 +56,3 @@ body {
 @import './tabs.css';
 @import './buttons.css';
 @import './sidepanel.css';
-
-/* DNAnexus styles */
-
-@import url('https://fonts.googleapis.com/css?family=Lato:700');
-@import url('https://use.fontawesome.com/releases/v5.3.1/css/all.css');
-body {
-  margin: 0px;
-}
-
-#dx_header_top_strip {
-  background-image: linear-gradient(to right, #1482b1 0, #82ae2f 100%);
-  background-repeat: repeat-x;
-  height: 7px;
-  border: 0px;
-  width: 100%;
-}
-
-#dx_header_main_strip {
-  border-bottom: 1.5px solid #e5e5e5;
-  box-shadow: 0 11px 10px -10px rgba(0, 0, 0, 0.17);
-  padding: 0 25px;
-  background-color: transparent;
-  border: none;
-  margin: 0;
-  height: 50px;
-  min-height: 8px;
-  border-radius: 0;
-  z-index: 1000;
-  position: relative;
-  display: block;
-  box-sizing: border-box;
-  font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #323536;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  width: 100%;
-}
-
-#dx_header_logo {
-  float: left;
-}
-
-#dx_header_logo_link {
-  float: left;
-  background: url(https://platform.dnanexus.com/images/logos/x-low-monochrome.png)
-    no-repeat center;
-  background-size: cover;
-  height: 20px;
-  width: 25px;
-  margin-right: 25px;
-  transition: all 0.2s ease-in-out;
-  margin-top: 10px;
-  padding: 15px 5px;
-  float: left;
-  font-size: 18px;
-  line-height: 20px;
-  text-decoration: none;
-  cursor: pointer;
-  box-sizing: border-box;
-}
-
-#dx_header_logo_link:hover {
-  height: 20px;
-  width: 25px;
-  background: url(https://platform.dnanexus.com/images/logos/x-133x160.png)
-    no-repeat center;
-  background-size: cover;
-}
-
-#dx_header_navbar {
-  border-color: #e7e7e7;
-  padding-left: 0;
-  padding-right: 0;
-  display: block;
-  height: 100% !important;
-  padding-bottom: 0;
-  overflow: visible;
-  width: auto;
-  border-top: 0;
-  box-shadow: none;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-}
-
-#dx_header_navbar_right {
-  display: block;
-
-  margin: 0;
-  float: right;
-  padding-left: 0;
-  list-style: none;
-  padding: 0px;
-  box-sizing: border-box;
-}
-
-#dx_header_user_name {
-  max-width: 87px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  box-sizing: border-box;
-  height: 100% !important;
-  width: 100%;
-  font-size: 12px;
-  color: #505050;
-  /*padding-left: 20px;*/
-  padding-right: 20px;
-  font-family: 'Lato', sans-serif;
-  line-height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#dx_header_navbar_left {
-  margin: 0;
-  float: left;
-  padding-left: 0;
-  list-style: none;
-  padding: 0px;
-  box-sizing: border-box;
-}
-
-#dx_header_left_item {
-  display: block;
-  height: 100% !important;
-  float: left;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  list-style-type: none;
-  box-sizing: border-box;
-  text-align: -webkit-match-parent;
-}
-
-#dx_header_left_link {
-  text-transform: uppercase;
-  padding-top: 2px;
-  height: 100% !important;
-  width: 100%;
-  font-size: 12px;
-  color: #505050;
-  padding-right: 20px;
-  padding-left: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Lato', sans-serif;
-  line-height: 20px;
-  position: relative;
-  text-decoration: none;
-  cursor: pointer;
-  background: transparent;
-  box-sizing: border-box;
-}
-#dx_header_left_link:hover {
-  color: #1482b1;
-}
