@@ -46,6 +46,37 @@ body {
   display: flex;
 }
 
+/* cusotm */
+#jp-top-panel,
+#jp-header-panel,
+#jp-main-content-panel {
+  position: relative;
+  top: 0;
+  width: 100%;
+}
+
+#jp-main-split-panel {
+  height: 100% !important;
+  width: 100%;
+}
+
+#jp-left-stack,
+#jp-main-dock-panel {
+  height: 100% !important;
+ }
+
+#jp-header-panel {
+  display: flex;
+  width: 100%;
+  background: white;
+  min-height: 58px;
+}
+ 
+#jp-header-panel > .p-Widget {
+   width: 100%;
+}
+
+
 /* Sibling imports */
 @import './datagrid.css';
 @import './dockpanel.css';
